@@ -37,10 +37,12 @@
     content:"";
     position:absolute;
     inset:-20px;
-    background-image:url('../img/c0d.jpg');
-    background-size:cover;
-    background-position:center;
-    filter:blur(5px);
+    background:
+      radial-gradient(circle at 15% 20%, #c6a0f640 0%, transparent 40%),
+      radial-gradient(circle at 85% 12%, #f5a97f35 0%, transparent 38%),
+      radial-gradient(circle at 82% 85%, #8bd5ca35 0%, transparent 42%),
+      radial-gradient(circle at 15% 85%, #a6e3a130 0%, transparent 38%),
+      linear-gradient(160deg, var(--mantle) 0%, var(--base) 55%, var(--mantle) 100%);
     z-index:-1;
   }
   #monitor{
@@ -759,4 +761,3 @@ body.no-anim .widget-slider::after{transition:none !important;}
   border:0;
   display:block;
 }
-
