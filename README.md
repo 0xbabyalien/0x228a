@@ -1,3 +1,4 @@
+
 # 0xBabyAlien Web Application
 
 <!-- Badges Header -->
@@ -12,10 +13,11 @@
 [![Link3 Visit](https://img.shields.io/badge/Link3-0xbabyalien-4A3B32?style=plastic&logo=thurgauerkantonalbank&logoColor=white)](https://link3.to/0xbabyalien)
 
 Welcome to the official repository for **0xBabyAlien**! This is an interactive web platform featuring crypto whale tracking, a community leaderboard, scanner utilities, and interactive mini-games (Asteroids & LinkMe).
+<br><br><div align="center"><a href="#"><img src="img/IMG_20260917_180949.jpg" width="500"></a></div>
 
 ---
 
-## 🚀 Key Features
+<h2><a href="#key-features"><img src="https://img.shields.io/badge/Key_Features-FFFFFF?style=for-the-badge&logo=setuptools&logoColor=%23E34F26" width="230"></a></h2>
 
 - **Whale Radar (`/api/whale-radar.js`)**: Tracks large-volume crypto transactions in real time.
 - **Contract & Token Scan (`/api/scan.js`)**: Scanning module to check smart contract or wallet address details.
@@ -27,7 +29,7 @@ Welcome to the official repository for **0xBabyAlien**! This is an interactive w
 
 ---
 
-## 🖼️ Asset Sources
+<h2><a href="#asset-sources"><img src="https://img.shields.io/badge/Asset_Sources-FFFFFF?style=for-the-badge&logo=sketchfab&logoColor=%23E34F26" width="230"></a></h2>
 
 | Asset | Source |
 |---|---|
@@ -39,7 +41,7 @@ Welcome to the official repository for **0xBabyAlien**! This is an interactive w
 
 ---
 
-## 📁 Directory Structure
+<h2><a href="#directory-structure"><img src="https://img.shields.io/badge/Directory_Structure-FFFFFF?style=for-the-badge&logo=Files&logoColor=%23E34F26" width="230"></a></h2>
 
 <pre>
 0xBabyAlien/
@@ -68,3 +70,5 @@ Welcome to the official repository for **0xBabyAlien**! This is an interactive w
 [![Live Demo](https://img.shields.io/badge/Demo-Live_Preview-4A3B32?style=plastic&logo=googlechrome&logoColor=yellow)](https://0xbabyalien.vercel.app)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-Give_Coffee-6F4E37?style=plastic&logo=buy-me-a-coffee&logoColor=white)](https://buymeacoffee.com/0xbabyalien)
 [![Ko-Fi](https://img.shields.io/badge/Ko_Fi-Buy_a_Coffee-6F4E37?style=plastic&logo=ko-fi&logoColor=white)](https://ko-fi.com/0xbabyalien)
+
+
