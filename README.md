@@ -31,11 +31,11 @@ Welcome to the official repository for **0xBabyAlien**! This is an interactive w
 
 | Asset | Source |
 |---|---|
-| `img/0xbabyalien.jpeg`, `img/c0d.jpg`, `img/favicon.ico` | Original/local — created for this project |
+| `img/0xbabyalien.jpeg`, `img/c0d.jpg`, `img/favicon.ico`,`img/228a.jpg`, `img/android-chrome-192x192.png` | Original/local — created for this project |
 | `img/icon/{black,white,color}/*.svg` | [cryptocurrency-icons](https://github.com/atomiclabs/cryptocurrency-icons) (CC0-1.0) |
-| (`img.shields.io/badge/...`) | [Shields.io](https://shields.io) — icons rendered via [Simple Icons](https://simpleicons.org) |
+| `img.shields.io/badge/...` | [Shields.io](https://shields.io) — icons rendered via [Simple Icons](https://simpleicons.org) |
 | `js/script.js` | Hotlinked from `assets.coingecko.com` (not stored in repo) |
-| `img/228a.jpg`, `img/android-chrome-192x192.png` | Unused / not referenced in code |
+| `load...` | `load...` |
 
 ---
 
