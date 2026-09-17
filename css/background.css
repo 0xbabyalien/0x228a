@@ -1,0 +1,221 @@
+/* ===== Alien Wallpaper Animation (Catppuccin Mocha) =====
+   Sits inside #desktop, right after #wallpaper — transparent
+   background so the cycler's gradient still shows through.
+   z-index:1 keeps it above #wallpaper (auto/0) but below
+   #icons (5), #widgets (5), #topbar (50), #dock (50), #vignette (9999). */
+
+#alien-wallpaper{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  z-index:1;
+  pointer-events:none; /* never blocks clicks/drags on the desktop */
+}
+
+/* ---- Stars ---- */
+.aw-stars{position:absolute; inset:0;}
+.aw-star{
+  position:absolute;
+  width:2px; height:2px;
+  background:#cdd6f4; /* fallback jika JS gagal jalan */
+  border-radius:50%;
+  opacity:.35;
+  animation: aw-twinkle 3.5s infinite ease-in-out;
+}
+/* Bintang besar sesekali, lebih terasa berwarna */
+.aw-star.big{ width:3px; height:3px; }
+@keyframes aw-twinkle{
+  0%,100%{opacity:.1; transform:scale(1);}
+  50%{opacity:.55; transform:scale(1.6);}
+}
+
+/* ---- Planets ---- (posisi diset via JS, style dasar + warna per planet di sini) */
+.aw-planets{ position:absolute; inset:0; }
+
+.aw-planet{
+  position:absolute;
+  border-radius:50%;
+  opacity:.55;
+  animation-name: aw-planet-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes aw-planet-float{
+  0%,100%{ transform:translate(0,0); }
+  50%{ transform:translate(6px,-9px); }
+}
+
+.aw-planet.mercury{
+  background:radial-gradient(circle at 35% 30%, #d6d6d6 0%, #a3a3a3 55%, #706f6f 100%);
+}
+.aw-planet.venus{
+  background:radial-gradient(circle at 35% 30%, #fff3d6 0%, #e8c988 55%, #c9a15c 100%);
+}
+.aw-planet.earth{
+  background:
+    radial-gradient(circle at 62% 68%, #4caf50 0%, transparent 32%),
+    radial-gradient(circle at 28% 22%, #6fbf73 0%, transparent 28%),
+    radial-gradient(circle at 35% 30%, #8fd3f4 0%, #4a90d9 55%, #1f4e8c 100%);
+}
+.aw-planet.mars{
+  background:radial-gradient(circle at 35% 30%, #e2794d 0%, #c1440e 55%, #862f09 100%);
+}
+.aw-planet.jupiter{
+  background:linear-gradient(180deg,
+    #ecd3ab 0%, #d9b384 16%, #cf9c6c 30%, #e6cba0 42%,
+    #b98a5e 55%, #e0bd8f 68%, #c8946a 80%, #ecd3ab 100%);
+}
+.aw-planet.saturn{
+  background:radial-gradient(circle at 35% 30%, #f5e6bf 0%, #d9bd82 55%, #b89a63 100%);
+}
+.aw-planet.saturn::after{
+  content:'';
+  position:absolute;
+  top:50%; left:50%;
+  width:190%; height:38%;
+  border:2px solid rgba(217,189,130,.6);
+  border-radius:50%;
+  transform:translate(-50%,-50%) rotate(-18deg);
+  box-sizing:border-box;
+  pointer-events:none;
+}
+.aw-planet.uranus{
+  background:radial-gradient(circle at 35% 30%, #d3f7f4 0%, #8fd9d3 55%, #5cb8b0 100%);
+}
+.aw-planet.neptune{
+  background:radial-gradient(circle at 35% 30%, #7a9ef5 0%, #3457d5 55%, #1f378a 100%);
+}
+
+/* ---- Moon ---- (benar-benar di tengah kanvas 1440px, clear of topbar/icons/widgets) */
+.aw-moon{
+  position:absolute;
+  top:58px;
+  left:50%;
+  width:56px; height:56px;
+  background:radial-gradient(circle at 32% 30%,
+    #ffffff 0%,
+    #fff6d9 22%,
+    #ffe08a 50%,
+    #f9b968 75%,
+    #f5834f 100%
+  );
+  border-radius:50%;
+  opacity:.42;
+  box-shadow:0 0 30px 8px rgba(249,184,104,.16);
+  animation: aw-float 9s ease-in-out infinite;
+}
+@keyframes aw-float{
+  0%,100%{ transform:translate(-50%, 0); }
+  25%{     transform:translate(calc(-50% - 10px), -6px); }
+  50%{     transform:translate(-50%, -14px); }
+  75%{     transform:translate(calc(-50% + 10px), -6px); }
+}
+
+/* ---- Alien + shadow ---- (left of the dock, clear of icons/widgets) */
+.aw-shadow{
+  position:absolute;
+  bottom:16px; left:400px;
+  width:40px; height:8px;
+  background:rgba(17,17,27,.5);
+  border-radius:50%;
+  opacity:.5;
+  animation: aw-shadow 0.9s infinite ease-in-out;
+}
+@keyframes aw-shadow{
+  0%,100%{transform:scaleX(1); opacity:.5;}
+  50%{transform:scaleX(.6); opacity:.22;}
+}
+
+.aw-alien{
+  position:absolute;
+  bottom:22px; left:398px;
+  width:36px; height:48px;
+  opacity:.6;
+  transform-origin:bottom center;
+  animation: aw-hop 0.9s infinite cubic-bezier(.4,0,.2,1);
+}
+@keyframes aw-hop{
+  0%{transform:translateY(0) scaleY(1);}
+  15%{transform:translateY(0) scaleY(.85);}
+  45%{transform:translateY(-42px) scaleY(1.05);}
+  75%{transform:translateY(0) scaleY(.9);}
+  100%{transform:translateY(0) scaleY(1);}
+}
+
+.aw-body{
+  position:absolute;
+  bottom:0; left:50%;
+  transform:translateX(-50%);
+  width:34px; height:40px;
+  background:var(--green, #a6e3a1);
+  border-radius:50% 50% 45% 45%;
+  box-shadow:0 0 12px rgba(166,227,161,.3);
+}
+
+.aw-eye{
+  position:absolute;
+  top:12px;
+  width:8px; height:11px;
+  background:#11111b;
+  border-radius:50%;
+}
+.aw-eye.left{left:6px;}
+.aw-eye.right{right:6px;}
+.aw-eye::after{
+  content:'';
+  position:absolute;
+  top:2px; left:2px;
+  width:3px; height:3px;
+  background:#cdd6f4;
+  border-radius:50%;
+}
+
+.aw-antenna{
+  position:absolute;
+  top:-11px;
+  width:3px; height:13px;
+  background:var(--green, #a6e3a1);
+  border-radius:2px;
+}
+.aw-antenna.l{left:8px; transform:rotate(-15deg); transform-origin:bottom;}
+.aw-antenna.r{right:8px; transform:rotate(15deg); transform-origin:bottom;}
+.aw-antenna::after{
+  content:'';
+  position:absolute;
+  top:-5px; left:50%;
+  transform:translateX(-50%);
+  width:6px; height:6px;
+  background:var(--yellow, #eed49f);
+  border-radius:50%;
+  box-shadow:0 0 6px var(--yellow, #eed49f);
+  animation: aw-blink 1.2s infinite alternate;
+}
+@keyframes aw-blink{ from{opacity:.4;} to{opacity:1;} }
+
+.aw-arm{
+  position:absolute;
+  top:11px;
+  width:6px; height:20px;
+  background:var(--green, #a6e3a1);
+  border-radius:4px;
+}
+.aw-arm.left{left:-4px; animation: aw-swingL .9s infinite;}
+.aw-arm.right{right:-4px; animation: aw-swingR .9s infinite;}
+@keyframes aw-swingL{ 0%,100%{transform:rotate(10deg);} 50%{transform:rotate(-25deg);} }
+@keyframes aw-swingR{ 0%,100%{transform:rotate(-10deg);} 50%{transform:rotate(25deg);} }
+
+.aw-leg{
+  position:absolute;
+  bottom:-8px;
+  width:8px; height:11px;
+  background:var(--green, #a6e3a1);
+  border-radius:4px;
+}
+.aw-leg.left{left:7px;}
+.aw-leg.right{right:7px;}
+
+/* Hide on small viewports where the fixed-canvas scaling makes the
+   scene too cramped to be worth the noise — comment out to always show */
+@media (max-width: 480px){
+  .aw-moon{ opacity:.18; }
+}
