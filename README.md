@@ -67,8 +67,10 @@ Welcome to the official repository for **0xBabyAlien**! This is an interactive w
 
 ---
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live_Preview-4A3B32?style=plastic&logo=googlechrome&logoColor=yellow)](https://0xbabyalien.vercel.app)
+[![Live Demo1](https://img.shields.io/badge/Demo-Live_Preview-4A3B32?style=plastic&logo=vercel&logoColor=white)](https://0xbabyalien.vercel.app)
+[![Live Demo2](https://img.shields.io/badge/Demo-Live_Preview-4A3B32?style=plastic&logo=cloudflare&logoColor=orange)](https://0xbabyalien.vercel.app)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-Give_Coffee-6F4E37?style=plastic&logo=buy-me-a-coffee&logoColor=white)](https://buymeacoffee.com/0xbabyalien)
 [![Ko-Fi](https://img.shields.io/badge/Ko_Fi-Buy_a_Coffee-6F4E37?style=plastic&logo=ko-fi&logoColor=white)](https://ko-fi.com/0xbabyalien)
+[![Paypal](https://img.shields.io/badge/paypal-Buy_a_Coffee-6F4E37?style=plastic&logo=paypal&logoColor=white)](https://paypal.me/0xbabyalien)
 
 
