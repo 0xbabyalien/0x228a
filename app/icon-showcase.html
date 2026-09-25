@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asset Icons — Exchange Icon Set</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B0E14;
+    --bg-raised: #10141D;
+    --card: #141924;
+    --card-hover: #1A2130;
+    --border: #232A3A;
+    --text: #EDEFF4;
+    --text-dim: #838C9E;
+    --accent: #4DE3B0;
+    --accent-dim: rgba(77,227,176,0.14);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html,body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection{ background: var(--accent-dim); color: var(--text); }
+
+  a{ color: inherit; }
+
+  /* ---------- layout shell ---------- */
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px 100px;
+  }
+
+  header.top{
+    padding: 72px 0 48px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+
+  .kicker{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    margin-bottom: 18px;
+  }
+
+  h1{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: clamp(34px, 5vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    max-width: 14ch;
+  }
+
+  header.top p{
+    margin-top: 18px;
+    color: var(--text-dim);
+    font-size: 16px;
+    max-width: 46ch;
+    line-height: 1.6;
+  }
+
+  /* ---------- live preview block ---------- */
+  .preview{
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 64px;
+    background: var(--bg-raised);
+  }
+
+  .preview-stage{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 56px 24px;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(77,227,176,0.07), transparent 55%),
+      var(--bg-raised);
+  }
+
+  .preview-stage asset-icon{
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35));
+  }
+
+  .preview-controls{
+    padding: 28px;
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .field label{
+    display:block;
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+
+  select, input[type="range"]{
+    width: 100%;
+  }
+
+  select{
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    appearance: none;
+  }
+
+  input[type="range"]{
+    accent-color: var(--accent);
+    height: 4px;
+  }
+
+  .range-value{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 8px;
+  }
+
+  .swatches{
+    display:flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .swatch{
+    width: 26px; height: 26px;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    padding:0;
+  }
+
+  .swatch.active{
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .swatch.custom{
+    background: conic-gradient(from 180deg, #FF5C5C, #F2B740, #4DE3B0, #3B82F6, #A855F7, #FF5C5C);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .swatch.custom input[type="color"]{
+    position: absolute;
+    inset: -4px;
+    width: calc(100% + 8px);
+    height: calc(100% + 8px);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  .snippet{
+    margin-top: auto;
+    background: #080A10;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--accent);
+    line-height: 1.6;
+    word-break: break-all;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .snippet span{ color: var(--text-dim); }
+
+  .snippet::after{
+    content: "click to copy";
+    position: absolute;
+    top: 10px; right: 12px;
+    font-size: 10px;
+    color: var(--text-dim);
+  }
+
+  .snippet.copied::after{
+    content: "copied";
+    color: var(--accent);
+  }
+
+  /* ---------- grid section ---------- */
+  .section-head{
+    display:flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .section-head h2{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  .count{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .search{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    width: 220px;
+  }
+
+  .search::placeholder{ color: var(--text-dim); }
+
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+    gap: 10px;
+  }
+
+  .icon-card{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 10px 14px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .icon-card:hover{
+    background: var(--card-hover);
+    border-color: #313A50;
+    transform: translateY(-2px);
+  }
+
+  .icon-card .name{
+    font-size: 11.5px;
+    color: var(--text-dim);
+    font-family: 'IBM Plex Mono', monospace;
+    text-align: center;
+  }
+
+  .icon-card.hidden{ display:none; }
+
+  footer{
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 13px;
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  footer code{
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--accent);
+  }
+
+  @media (max-width: 640px){
+    .preview{ grid-template-columns: 1fr; }
+    .preview-controls{ border-left:none; border-top: 1px solid var(--border); }
+    header.top{ padding: 48px 0 32px; }
+    .wrap{ padding: 0 20px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="kicker">asset.js — icon library</div>
+    <h1>23 exchange icons, one element tag</h1>
+    <p>Every icon in this set is served through the <code>&lt;asset-icon&gt;</code> custom element. Pick one below, adjust it, and copy the exact markup into your own page.</p>
+  </header>
+
+  <div class="preview">
+    <div class="preview-stage">
+      <asset-icon id="stage-icon" name="binance" width="96" height="96"></asset-icon>
+    </div>
+    <div class="preview-controls">
+      <div class="field">
+        <label>exchange</label>
+        <select id="ctl-name"></select>
+      </div>
+      <div class="field">
+        <label>size — <span id="size-label">96px</span></label>
+        <input type="range" id="ctl-size" min="24" max="160" value="96">
+      </div>
+      <div class="field">
+        <label>shape color</label>
+        <div class="swatches" id="ctl-color"></div>
+      </div>
+      <div class="field">
+        <label>background color</label>
+        <div class="swatches" id="ctl-background"></div>
+      </div>
+      <div class="snippet" id="snippet" title="Click to copy"></div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <h2>Full set</h2>
+    <input class="search" id="search" type="text" placeholder="Filter by name…">
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    <span>Loaded from <code>asset.js</code> — no build step, no dependencies.</span>
+    <span id="count-total"></span>
+  </footer>
+
+</div>
+
+<script src="https://gitprox.0xbabyalien.workers.dev/assets/assets.js"></script>
+<script>
+  const names = Object.keys(window.AssetIcons || {});
+  const colors = [
+    null,
+    '#EDEFF4', // off-white
+    '#0B0E14', // near-black
+    '#4DE3B0', // mint
+    '#3B82F6', // blue
+    '#A855F7', // violet
+    '#FF5C5C', // red
+    '#F2B740', // gold
+    '#FB7185', // pink
+    '#22C55E', // green
+    '#FB923C', // orange
+    '#64748B'  // slate
+  ];
+
+  // ---- preview stage ----
+  const stageIcon = document.getElementById('stage-icon');
+  const selName = document.getElementById('ctl-name');
+  const rangeSize = document.getElementById('ctl-size');
+  const sizeLabel = document.getElementById('size-label');
+  const colorWrap = document.getElementById('ctl-color');
+  const bgWrap = document.getElementById('ctl-background');
+  const snippetEl = document.getElementById('snippet');
+
+  names.forEach(n => {
+    const opt = document.createElement('option');
+    opt.value = n;
+    opt.textContent = n;
+    selName.appendChild(opt);
+  });
+
+  let currentColor = null;
+  let currentBackground = null;
+
+  function buildSwatches(wrap, onPick){
+    colors.forEach((c, i) => {
+      const b = document.createElement('button');
+      b.className = 'swatch' + (i === 0 ? ' active' : '');
+      b.style.background = c || 'repeating-conic-gradient(#2A3247 0% 25%, #141924 0% 50%) 50% / 10px 10px';
+      b.title = c || 'none (original)';
+      b.addEventListener('click', () => {
+        [...wrap.children].forEach(el => el.classList.remove('active'));
+        b.classList.add('active');
+        onPick(c);
+      });
+      wrap.appendChild(b);
+    });
+
+    // Custom color-picker swatch — lets you pick any color, not just the presets
+    const custom = document.createElement('button');
+    custom.className = 'swatch custom';
+    custom.title = 'Pick a custom color';
+    const input = document.createElement('input');
+    input.type = 'color';
+    input.value = '#4de3b0';
+    input.addEventListener('input', () => {
+      [...wrap.children].forEach(el => el.classList.remove('active'));
+      custom.classList.add('active');
+      onPick(input.value);
+    });
+    custom.appendChild(input);
+    wrap.appendChild(custom);
+  }
+
+  buildSwatches(colorWrap, (c) => { currentColor = c; updateStage(); });
+  buildSwatches(bgWrap, (c) => { currentBackground = c; updateStage(); });
+
+  function buildSnippet(name, size, color, background, forDisplay){
+    let attrs = `name="${name}" width="${size}" height="${size}"`;
+    if (color) attrs += ` color="${color}"`;
+    if (background) attrs += ` background="${background}"`;
+    if (!forDisplay) return `<asset-icon ${attrs}></asset-icon>`;
+    attrs = `name=<span>"${name}"</span> width=<span>"${size}"</span> height=<span>"${size}"</span>`;
+    if (color) attrs += ` color=<span>"${color}"</span>`;
+    if (background) attrs += ` background=<span>"${background}"</span>`;
+    return `&lt;asset-icon ${attrs}&gt;&lt;/asset-icon&gt;`;
+  }
+
+  function updateStage(){
+    const name = selName.value;
+    const size = rangeSize.value;
+    stageIcon.setAttribute('name', name);
+    stageIcon.setAttribute('width', size);
+    stageIcon.setAttribute('height', size);
+    sizeLabel.textContent = size + 'px';
+
+    currentColor ? stageIcon.setAttribute('color', currentColor) : stageIcon.removeAttribute('color');
+    currentBackground ? stageIcon.setAttribute('background', currentBackground) : stageIcon.removeAttribute('background');
+
+    snippetEl.innerHTML = buildSnippet(name, size, currentColor, currentBackground, true);
+  }
+
+  selName.addEventListener('change', updateStage);
+  rangeSize.addEventListener('input', updateStage);
+
+  snippetEl.addEventListener('click', () => {
+    const text = buildSnippet(selName.value, rangeSize.value, currentColor, currentBackground, false);
+    navigator.clipboard.writeText(text).then(() => {
+      snippetEl.classList.add('copied');
+      setTimeout(() => snippetEl.classList.remove('copied'), 1200);
+    });
+  });
+
+  updateStage();
+
+  // ---- full grid ----
+  const grid = document.getElementById('grid');
+  document.getElementById('count-total').textContent = names.length + ' icons';
+
+  names.forEach(name => {
+    const card = document.createElement('div');
+    card.className = 'icon-card';
+    card.dataset.name = name;
+
+    const icon = document.createElement('asset-icon');
+    icon.setAttribute('name', name);
+    icon.setAttribute('width', '32');
+    icon.setAttribute('height', '32');
+
+    const label = document.createElement('div');
+    label.className = 'name';
+    label.textContent = name;
+
+    card.appendChild(icon);
+    card.appendChild(label);
+
+    card.addEventListener('click', () => {
+      selName.value = name;
+      updateStage();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    grid.appendChild(card);
+  });
+
+  document.getElementById('search').addEventListener('input', (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    [...grid.children].forEach(card => {
+      card.classList.toggle('hidden', !card.dataset.name.includes(q));
+    });
+  });
+</script>
+
+</body>
+</html>
