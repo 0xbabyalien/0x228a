@@ -207,9 +207,19 @@
     }
   }, 1000);
 
-  /* ---------- WORKSPACES ---------- */
+      /* ---------- WORKSPACES ---------- */
   document.querySelectorAll('.ws').forEach(ws=>{
     ws.addEventListener('click', ()=>{
+      const wsId = ws.dataset.ws;
+      const onAlienPage = decodeURIComponent(location.pathname).endsWith('👽.html');
+      if(wsId === '8' && !onAlienPage){
+        window.location.href = '👽.html';
+        return;
+      }
+      if(wsId === '1' && onAlienPage){
+        window.location.href = 'index.html';
+        return;
+      }
       document.querySelectorAll('.ws').forEach(x=>x.classList.remove('active'));
       ws.classList.add('active');
     });
@@ -300,13 +310,14 @@
   document.querySelectorAll('[data-toast-key]').forEach(el=>{
     el.addEventListener('click', ()=> toast(T(el.getAttribute('data-toast-key'))));
   });
-  document.querySelector('[data-action="trash"]').addEventListener('click', ()=> toast(T('toastTrashEmpty')));
+  const trashIconEl = document.querySelector('[data-action="trash"]');
+  if(trashIconEl) trashIconEl.addEventListener('click', ()=> toast(T('toastTrashEmpty')));
 
   document.querySelectorAll('.window .titlebar').forEach(bar=>{
-    const w = bar.closest('.window');
-    bar.querySelector('[data-act="close"]').addEventListener('click', e=>{ e.stopPropagation(); closeWindow(w); });
-    bar.querySelector('[data-act="min"]').addEventListener('click', e=>{ e.stopPropagation(); closeWindow(w); });
-    bar.querySelector('[data-act="max"]').addEventListener('click', e=>{
+  const w = bar.closest('.window');
+  const noClose = w.id === 'win-iconshowcase';
+  bar.querySelector('[data-act="close"]').addEventListener('click', e=>{ e.stopPropagation(); if(noClose) return; closeWindow(w); });
+  bar.querySelector('[data-act="min"]').addEventListener('click', e=>{ e.stopPropagation(); if(noClose) return; closeWindow(w); });bar.querySelector('[data-act="max"]').addEventListener('click', e=>{
       e.stopPropagation();
       if(w.dataset.maxed === '1'){
         w.style.left = w.dataset.prevLeft; w.style.top = w.dataset.prevTop;
