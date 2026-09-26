@@ -3,7 +3,5 @@ This is a Brave Creators publisher verification file.
 Domain: 0xbabyalien.vercel.app
 Token: d19e244af8004642870712830e78ad4aed05b6c332994f2d5029f85dceede802
 
-This is a Brave Creators publisher verification file.
-
 Domain: 0xbabyalien.pages.dev
 Token: e1363ab7cef6b4d3bdb5192edb6fa306df29a1beb1dc101d72d7760244927157
