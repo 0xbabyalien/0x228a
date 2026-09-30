@@ -1,0 +1,17 @@
+{
+  "name": "0xbabyalien",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal static link-in-bio website for 0xBabyAlien, directly using Simple Icons for all brand logos",
+  "keywords": [
+    "0xbabyalien",
+    "link-in-bio",
+    "static-site",
+    "simple-icons"
+  ],
+  "homepage": "https://0xbabyalien.vercel.app",
+  "license": "MIT",
+  "dependencies": {
+    "simple-icons": "^16.33.0"
+  }
+}
