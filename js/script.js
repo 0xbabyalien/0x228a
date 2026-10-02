@@ -208,22 +208,39 @@
   }, 1000);
 
       /* ---------- WORKSPACES ---------- */
-  document.querySelectorAll('.ws').forEach(ws=>{
-    ws.addEventListener('click', ()=>{
-      const wsId = ws.dataset.ws;
-      const onAlienPage = decodeURIComponent(location.pathname).endsWith('👽.html');
-      if(wsId === '8' && !onAlienPage){
-        window.location.href = '👽.html';
-        return;
-      }
-      if(wsId === '1' && onAlienPage){
-        window.location.href = 'index.html';
-        return;
-      }
-      document.querySelectorAll('.ws').forEach(x=>x.classList.remove('active'));
-      ws.classList.add('active');
-    });
+  const wsPages = {
+  '1': 'index.html',
+  '2': '🚀.html',
+  '3': '#',
+  '4': '#',
+  '5': '#',
+  '6': '#',
+  '7': '#',
+  '8': '👽.html'
+
+};
+
+const currentPage = decodeURIComponent(location.pathname).split('/').pop() || 'index.html';
+
+document.querySelectorAll('.ws').forEach(ws => {
+  const target = wsPages[ws.dataset.ws];
+
+  if (target === currentPage) {
+    document.querySelectorAll('.ws').forEach(x => x.classList.remove('active'));
+    ws.classList.add('active');
+  }
+
+  ws.addEventListener('click', () => {
+    
+    if (target && target !== currentPage) {
+      window.location.href = target;
+      return;
+    }
+    
+    document.querySelectorAll('.ws').forEach(x => x.classList.remove('active'));
+    ws.classList.add('active');
   });
+});
 
   /* ---------- TOAST ---------- */
   let toastTimer;
