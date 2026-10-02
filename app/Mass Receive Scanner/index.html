@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mass Wallet Receive Scanner - Premium</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.notice{display:flex;align-items:center;gap:10px;background:rgba(78,205,196,0.10);border:1px solid rgba(78,205,196,0.3);color:#4ECDC4;padding:10px 14px;border-radius:12px;font-size:12px;margin-bottom:14px}
+.spinner{width:14px;height:14px;border:2px solid rgba(78,205,196,0.3);border-top-color:#4ECDC4;border-radius:50%;animation:spin 0.8s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+<div class="container">
+    <div class="header">
+        <h1><span>◈</span> Flexible Mass Scanner</h1>
+        <p>Select Blockchain • Bring Your Own API • <b>Mass RECEIVE Scan</b></p>
+    </div>
+    <div class="glass">
+        <div class="block">
+            <div class="section-title"><span>◆</span> 1. Select Blockchain</div>
+            <div class="select-wrap">
+                <select id="chain" class="select-native">
+                    <option value="1" selected>Ethereum (ETH) — ChainID 1</option>
+                    <option value="56">BSC (BNB) — ChainID 56</option>
+                    <option value="137">Polygon (MATIC) — ChainID 137</option>
+                    <option value="42161">Arbitrum (ETH) — ChainID 42161</option>
+                    <option value="8453">Base (ETH) — 8453</option>
+                    <option value="10">Optimism (ETH) — 10</option>
+                    <option value="43114">Avalanche (AVAX) — 43114</option>
+                
+                </select>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title"><span>◆</span> <span id="apiTitle">2. BscScan V2 API Key — BYOK</span> <span id="endpointBadge" class="badge green" style="display:none; margin-left:8px; font-size:10px;">-</span></div>
+            <p class="desc">Just fill in Option A OR Option B, not both required. 1 API key is enough. <br><small id="activeEndpointInfo" style="color:#4ECDC4; font-size:11px; display:block; margin-top:4px;"></small></p>
+            <div class="notice">
+                <span class="spinner"></span>
+                <span>BSC &amp; Optimism are searching for a free API route...</span>
+            </div>
+            <div class="grid2">
+                <div>
+                    <label class="small">Option A — Paste in Textbox</label>
+                    <div class="input-wrap">
+                        <input id="apiText" type="password" class="input" placeholder="Paste 1 or multiple keys">
+                        <span class="eye" id="eyeBtn">👁</span>
+                    </div>
+                    <label class="check"><input type="checkbox" id="remember"> Remember on this device</label>
+                </div>
+                <div>
+                    <label class="small">Option B — Upload api.txt</label>
+                    <label class="file-drop">
+                        <div class="icon">⬆</div>
+                        <b>Click to upload api.txt</b>
+                        <span>1 line = 1 API Key</span>
+                        <input type="file" id="apiFile" accept=".txt" hidden>
+                    </label>
+                    <div id="apiInfo" class="info"></div>
+                </div>
+            </div>
+            <div id="apiCount" class="badge">0 API Keys detected</div>
+        </div>
+
+        <div class="card">
+            <div class="section-title"><span>◆</span> 3. Wallet List — Mass Scan</div>
+            <p class="desc">Just fill in Option A OR Option B, not both required. 1 wallet is enough.</p>
+            <div class="grid2">
+                <div>
+                    <label class="small">Option A — Paste in Textbox</label>
+                    <textarea id="walletText" class="textarea" placeholder="0x..........................."></textarea>
+                </div>
+                <div>
+                    <label class="small">Option B — Upload wallet.txt</label>
+                    <label class="file-drop large">
+                        <div class="icon big">⬆</div>
+                        <b>Click to upload wallet.txt</b>
+                        <span>Max 500 wallets / file max 100KB</span>
+                        <input type="file" id="walletFile" accept=".txt" hidden>
+                    </label>
+                    <div id="walletInfo" class="info"></div>
+                </div>
+            </div>
+            <div id="walletCount" class="badge">0 valid wallets detected</div>
+        </div>
+
+        <div class="actions">
+            <button id="btnScan" class="btn btn-primary">◎ SCAN MASS RECEIVE</button>
+            <button id="btnClear" class="btn btn-ghost">Clear</button>
+            <button id="btnExport" class="btn btn-ghost">⬇ Export CSV</button>
+            <label class="check ml-auto"><input type="checkbox" id="hideSpam" checked> Hide Spam</label>
+        </div>
+        <div class="progress-wrap"><div id="progress" class="progress-bar"></div></div>
+        <div id="progressText" class="progress-text">0 / 0</div>
+    </div>
+
+    <div class="glass result">
+        <div class="result-head">
+            <span id="countTotal" class="badge dark">Total: 0</span>
+            <span id="countStable" class="badge">Stable: 0</span>
+            <span id="countNative" class="badge green">Native: 0</span>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>Wallet</th><th>Time</th><th>Token</th><th>Amount</th><th>Status</th><th>Hash</th></tr></thead>
+                <tbody id="tbody"></tbody>
+            </table>
+        </div>
+    </div>
+    <p class="footer">Security: BYOK — Your key is only used in your browser.</p>
+</div>
+<script src="script.js"></script>
+</body>
+  </html>
