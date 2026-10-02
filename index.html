@@ -14,6 +14,7 @@
   window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
+<script src="https://kit.fontawesome.com/64873be441.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -686,14 +687,14 @@
         <div id="lockscreen">
           <div id="lock-time">--:--</div>
           <div id="lock-date">-</div>
-          <div id="lock-hint" data-i18n="lockHint">click / tap anywhere to unlock🔓</div>
+          <div id="lock-hint" data-i18n="lockHint"><i class="fa-solid fa-fingerprint" color="#fff"></i> click or tap anywhere to unlock <i class="fa-solid fa-unlock"></i></div>
         </div>
 
         <div id="vignette"></div>
       </div>
     </div>
   </div>
-  <div id="hint" data-i18n="hintText">this view looks identical on every device — 📱phone, 💻tablet, or 🖥PC</div>
+  <div id="hint" data-i18n="hintText"><i class="fa-solid fa-circle-info"></i> this view looks identical on every device — <i class="fa-solid fa-mobile-screen-button"></i>phone, <i class="fa-solid fa-laptop"></i>tablet, or <i class="fa-solid fa-display"></i>PC</div>
 </div>
 
 <script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
