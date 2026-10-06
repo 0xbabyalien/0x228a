@@ -1,0 +1,35 @@
+name: Update Directory Structure
+
+on:
+  push:
+    branches:
+      - 0xBabyAlien
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write 
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate and Inject Directory Tree
+        uses: euberdeveloper/ga-dree@v2
+        with:
+          targetPath: './README.md'
+          comment: 'tree'
+          exclude: '.git/**,node_modules/**,.github/**'
+
+      - name: Commit and Push changes if README updated
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.io"
+          git status
+          git diff
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git add README.md
+            git commit -m "docs: auto-update directory structure in README"
+            git push
+          fi
