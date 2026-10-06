@@ -603,25 +603,25 @@
             </div>
           </div>
 
-        <!-- @ WINDOW (Action Contracts — capabilities list) -->
-        <div class="window" id="win-at" style="left:300px;top:90px;width:480px;height:460px;display:none;">
-          <div class="titlebar" data-win="at">
-          <button class="tbtn close" data-act="close"></button>
-          <button class="tbtn min" data-act="min"></button>
-          <button class="tbtn max" data-act="max"></button>
-          <div class="wtitle" data-i18n="atLabel">💼</div>
-          </div>
-          <div class="wbody">
-          <div class="at-body">
-          <div class="at-head">
-           <span class="at-dot" id="at-dot"></span>
-           <span id="at-status" data-i18n="atLoading">Loading capabilities…</span>
-           <button id="at-refresh" title="Refresh now" data-i18n-title="atRefresh">↻</button>
-           </div>
-           <div id="at-list" class="at-list"></div>
-            </div>
-            </div>
-          </div>
+        <!-- 💼 WINDOW: Action Contracts -->
+<div class="window" id="win-at"
+     style="left:300px;top:90px;width:620px;height:560px;display:none;">
+  <div class="titlebar" data-win="at">
+    <button class="tbtn close" data-act="close"></button>
+    <button class="tbtn min" data-act="min"></button>
+    <button class="tbtn max" data-act="max"></button>
+    <div class="wtitle" data-i18n="atLabel">💼</div>
+  </div>
+  <div class="wbody">
+    <div class="md-embed-body">
+      <iframe
+        class="mirror-screen"
+        src="app/templates.html"
+        title="Action Contracts">
+      </iframe>
+    </div>
+  </div>
+</div>
 
           <!-- * WINDOW (placeholder, content TBD) -->
           <div class="window" id="win-star" style="left:340px;top:130px;width:620px;height:560px;display:none;">
