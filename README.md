@@ -45,6 +45,54 @@ Welcome to the official repository for **0xBabyAlien**! This is an interactive w
 
 <pre>
 <!-- START_SECTION:tree -->
+.
+|-- 404.html
+|-- LICENSE
+|-- README.md
+|-- api
+|   |-- [[...config]].js
+|   |-- action-contracts.js
+|   |-- index.js
+|   |-- leaderboard.js
+|   |-- scan.js
+|   `-- whale-radar.js
+|-- app
+|   |-- Mass Receive Scanner
+|   |   |-- css
+|   |   |   `-- style.css
+|   |   |-- index.html
+|   |   `-- js
+|   |       `-- script.js
+|   |-- asteroids.htm
+|   |-- icon-showcase.html
+|   |-- linkme.html
+|   `-- templates.html
+|-- css
+|   |-- background.css
+|   |-- error.css
+|   |-- load.css
+|   `-- style.css
+|-- directory-structure.txt
+|-- index.html
+|-- js
+|   |-- background.js
+|   |-- error.js
+|   |-- icons-black.js
+|   |-- icons-color.js
+|   |-- icons-white.js
+|   |-- load.js
+|   |-- main.js
+|   `-- script.js
+|-- package.json
+|-- template
+|   `-- portfolio-001
+|       |-- index.html
+|       |-- script.js
+|       `-- style.css
+|-- 👽.html
+`-- 🚀.html
+
+10 directories, 36 files
 <!-- END_SECTION:tree -->
 </pre>
 
