@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - 0xBabyAlien
-workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   update-readme:
@@ -20,16 +20,16 @@ jobs:
         run: |
           sudo apt-get install -y tree
           
-          # Mengabaikan .git, .github, node_modules, dan menyembunyikan isi folder img
+          # Generate tree structure with proper exclusion
           TREE_CONTENT=$(tree -I ".git|.github|node_modules|img" --charset ascii)
           
           echo "Generated tree:"
           echo "$TREE_CONTENT"
           
-          # Menyimpan hasil tree ke file .txt
+          # Save the tree content to a .txt file
           echo "$TREE_CONTENT" > directory-structure.txt
           
-          # Memperbarui README.md secara otomatis di antara marker
+          # Inject the tree into README.md between the markers
           python3 -c "
           with open('README.md', 'r', encoding='utf-8') as f:
               content = f.read()
