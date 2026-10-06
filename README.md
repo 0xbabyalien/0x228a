@@ -44,25 +44,8 @@ Welcome to the official repository for **0xBabyAlien**! This is an interactive w
 <h2><a href="#directory-structure"><img src="https://img.shields.io/badge/Directory_Structure-FFFFFF?style=for-the-badge&logo=Files&logoColor=%23E34F26" width="230"></a></h2>
 
 <pre>
-0xBabyAlien/
-├── 404.html               # Custom error page
-├── LICENSE                # MIT License
-├── README.md              # Project documentation
-├── api/                   # Serverless API endpoints (Node.js)
-│   ├── action-contracts.js
-│   ├── index.js
-│   ├── leaderboard.js
-│   ├── scan.js
-│   └── whale-radar.js
-├── app/                   # Web apps & mini-games
-│   ├── asteroids.html
-│   └── linkme.html
-├── css/                   # Stylesheets
-│   ├── error.css
-│   ├── load.css
-│   └── style.css
-└── img/                   # Image assets
-    └── 0xbabyalien.jpeg
+<!-- START_SECTION:tree -->
+<!-- END_SECTION:tree -->
 </pre>
 
 ---
