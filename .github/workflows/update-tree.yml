@@ -1,18 +1,34 @@
-- name: Generate Directory Tree
+name: Update Directory Structure
+
+on:
+  push:
+    branches:
+      - 0xBabyAlien
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate Directory Tree
         run: |
-          # Install the tree command if not already available
           sudo apt-get install -y tree
           
-          # Generate tree and filter out any lines belonging inside the img folder completely
-          TREE_CONTENT=$(tree -I ".git|.github|node_modules" --charset ascii | grep -vE "img/|-- 0xbabyalien|-- 228a|-- IMG_|-- android-|-- c0d|-- favicon|-- icon")
+          # Mengabaikan .git, .github, node_modules, dan menyembunyikan isi folder img
+          TREE_CONTENT=$(tree -I ".git|.github|node_modules|img" --charset ascii)
           
           echo "Generated tree:"
           echo "$TREE_CONTENT"
           
-          # Save the tree content directly to a .txt file
+          # Menyimpan hasil tree ke file .txt
           echo "$TREE_CONTENT" > directory-structure.txt
           
-          # Inject the generated tree into README.md between the markers
+          # Memperbarui README.md secara otomatis di antara marker
           python3 -c "
           with open('README.md', 'r', encoding='utf-8') as f:
               content = f.read()
@@ -33,4 +49,15 @@
           else:
               print('Markers not found in README.md')
           "
-          
+
+      - name: Commit and Push changes if updated
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.io"
+          git status
+          git diff
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git add README.md directory-structure.txt
+            git commit -m "docs: auto-update directory structure (README & txt)"
+            git push
+          fi
