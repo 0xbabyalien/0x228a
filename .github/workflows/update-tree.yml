@@ -20,8 +20,8 @@ jobs:
           # Install the tree command if not already available
           sudo apt-get install -y tree
           
-          # Generate the tree structure while ignoring hidden folders and node_modules
-          TREE_CONTENT=$(tree -I ".git|.github|node_modules" --charset ascii)
+          # Generate the tree structure while ignoring hidden files, node_modules, and everything inside img/
+          TREE_CONTENT=$(tree -I ".git|.github|node_modules|img/*" --charset ascii)
           
           echo "Generated tree:"
           echo "$TREE_CONTENT"
