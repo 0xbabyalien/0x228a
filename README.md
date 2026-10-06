@@ -37,7 +37,7 @@ Welcome to the official repository for **0xBabyAlien**! This is an interactive w
 | `img/icon/{black,white,color}/*.svg` | [cryptocurrency-icons](https://github.com/atomiclabs/cryptocurrency-icons) (CC0-1.0) |
 | `img.shields.io/badge/...`, `cdn.jsdelivr.net/npm/simple-icons` | [Shields.io](https://shields.io) — [Simple Icons](https://simpleicons.org) |
 | `js/script.js` | Hotlinked from `assets.coingecko.com` (not stored in repo) |
-| `load...` | `load...` |
+| `kit.fontawesome.com/` | `CDN Font Awesome Kits` [FontAwesome](https://github.com/fortawesome/font-awesome) |
 
 ---
 
