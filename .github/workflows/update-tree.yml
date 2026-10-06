@@ -3,24 +3,50 @@ name: Update Directory Structure
 on:
   push:
     branches:
-      - 0xBabyAlien
+      - 0xBabyAlien # Adjust to your primary branch (main or master)
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
     permissions:
-      contents: write 
+      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Generate and Inject Directory Tree
-        uses: euberdeveloper/ga-dree@v2
-        with:
-          targetPath: './README.md'
-          comment: 'tree'
-          exclude: '.git/**,node_modules/**,.github/**'
+      - name: Generate Directory Tree
+        run: |
+          # Install the tree command if not already available
+          sudo apt-get install -y tree
+          
+          # Generate the tree structure while ignoring hidden folders and node_modules
+          TREE_CONTENT=$(tree -I ".git|.github|node_modules" --charset ascii)
+          
+          echo "Generated tree:"
+          echo "$TREE_CONTENT"
+          
+          # Inject the generated tree into README.md between the markers
+          python3 -c "
+          with open('README.md', 'r', encoding='utf-8') as f:
+              content = f.read()
+          
+          start_marker = '<!-- START_SECTION:tree -->'
+          end_marker = '<!-- END_SECTION:tree -->'
+          
+          if start_marker in content and end_marker in content:
+              start_idx = content.find(start_marker) + len(start_marker)
+              end_idx = content.find(end_marker)
+              
+              new_tree = '\n' + '''$TREE_CONTENT''' + '\n'
+              new_content = content[:start_idx] + new_tree + content[end_idx:]
+              
+              with open('README.md', 'w', encoding='utf-8') as f:
+                  f.write(new_content)
+              print('README.md successfully updated!')
+          else:
+              print('Markers not found in README.md')
+          "
 
       - name: Commit and Push changes if README updated
         run: |
