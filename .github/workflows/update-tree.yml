@@ -26,6 +26,9 @@ jobs:
           echo "Generated tree:"
           echo "$TREE_CONTENT"
           
+          # Save the tree content directly to a .txt file
+          echo "$TREE_CONTENT" > directory-structure.txt
+          
           # Inject the generated tree into README.md between the markers
           python3 -c "
           with open('README.md', 'r', encoding='utf-8') as f:
@@ -48,14 +51,14 @@ jobs:
               print('Markers not found in README.md')
           "
 
-      - name: Commit and Push changes if README updated
+      - name: Commit and Push changes if updated
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.io"
           git status
           git diff
           if [[ -n "$(git status --porcelain)" ]]; then
-            git add README.md
-            git commit -m "docs: auto-update directory structure in README"
+            git add README.md directory-structure.txt
+            git commit -m "docs: auto-update directory structure (README & txt)"
             git push
           fi
